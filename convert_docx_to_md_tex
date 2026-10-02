@@ -1,0 +1,38 @@
+import pypandoc
+
+def konversi_dokumen(file_word):
+    print(f"Memproses file: {file_word}...\n")
+    
+    # 1. Konversi ke Markdown (.md)
+    file_md = "Hasil_Konversi_Aljabar.md"
+    try:
+        pypandoc.convert_file(
+            file_word, 
+            'markdown', 
+            outputfile=file_md,
+            extra_args=['--extract-media=./gambar'] 
+        )
+        print(f"✅ Berhasil membuat file Markdown: {file_md}")
+    except Exception as e:
+        print(f"❌ Gagal konversi ke Markdown: {e}")
+
+    # 2. Konversi ke LaTeX Murni (.tex)
+    file_tex = "Hasil_Konversi_Aljabar.tex"
+    try:
+        pypandoc.convert_file(
+            file_word, 
+            'latex', 
+            outputfile=file_tex,
+            extra_args=['--extract-media=./gambar_latex'] 
+        )
+        print(f"✅ Berhasil membuat file LaTeX: {file_tex}")
+    except Exception as e:
+        print(f"❌ Gagal konversi ke LaTeX: {e}")
+
+# --- Cara Penggunaan ---
+# Ganti dengan nama file Word Anda
+file_input = "Topik 1_ Aljabar Boolean & Teori Himpunan.docx" 
+
+konversi_dokumen(file_input)
+
+# UNTUK LEADER PEMAAF NAIM 
